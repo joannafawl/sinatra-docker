@@ -2,26 +2,30 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@0.1.2 
   heroku: circleci/heroku@0.0.10
-
 workflows:
   heroku_deploy:
     jobs:
-      - build
-      - heroku/deploy-via-git:
-          requires:
-            - build
-          filters:
-            branches:
-              only: sequential-branch-filters
+      - heroku/deploy-via-git
 
-jobs:
-  build:
-    docker:
-      - image: circleci/ruby:2.6.3-stretch-node
-    executor: ruby/default
-    steps:
-      - checkout
-      - run:
-          name: Which bundler?
-          command: bundle -v
-      - ruby/bundle-install
+# workflows:
+#   heroku_deploy:
+#     jobs:
+#       - build
+#       - heroku/deploy-via-git:
+#           requires:
+#             - build
+#           filters:
+#             branches:
+#               only: sequential-branch-filters
+
+# jobs:
+#   build:
+#     docker:
+#       - image: circleci/ruby:2.6.3-stretch-node
+#     executor: ruby/default
+#     steps:
+#       - checkout
+#       - run:
+#           name: Which bundler?
+#           command: bundle -v
+#       - ruby/bundle-install

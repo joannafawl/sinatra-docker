@@ -1,5 +1,5 @@
 require 'sinatra'
 
 get '/' do
-  'It works for Joanna!'
+  'It works for Joanna?'
 end
